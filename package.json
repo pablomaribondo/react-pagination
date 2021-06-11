@@ -30,6 +30,14 @@
     ]
   },
   "devDependencies": {
-    "git-commit-msg-linter": "^3.1.0"
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-xo": "^0.36.0",
+    "eslint-config-xo-react": "^0.25.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "git-commit-msg-linter": "^3.1.0",
+    "prettier": "^2.3.1"
   }
 }
