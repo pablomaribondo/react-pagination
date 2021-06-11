@@ -1,0 +1,17 @@
+# React Pagination
+
+## 💻 Projeto
+
+Projeto desenvolvido com base no vídeo [ReactJS pagination using custom hook][video], oferecido por [CodingFromScratch][channel].
+
+## 🛠 Tecnologias
+
+As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
+
+- [Bulma][bulma]
+- [React][react]
+
+[bulma]: https://bulma.io/
+[channel]: https://www.youtube.com/channel/UCS2UjgEPEybOx1toY7aKRJg
+[react]: https://reactjs.org/
+[video]: https://www.youtube.com/watch?v=AFlFTAI5k-Q
