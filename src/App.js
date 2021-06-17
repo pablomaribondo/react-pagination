@@ -12,8 +12,7 @@ const App = () => {
     <>
       <Header title="ReactJS pagination using custom hook" />
       <div className="container px2">
-        <Countries data={data} itemsPerPage={10} />
-        <Countries data={data} itemsPerPage={5} startFrom={25} />
+        <Countries data={data} itemsPerPage={15} />
       </div>
     </>
   );
