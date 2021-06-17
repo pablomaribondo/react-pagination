@@ -1,8 +1,12 @@
+/* global CountriesData: readonly */
+import { FC } from 'react';
+
 import usePagination from '../hooks/usePagination';
 
-const Countries = ({ data, itemsPerPage, startFrom }) => {
+const Countries: FC<CountriesData> = ({ data, itemsPerPage, startFrom }) => {
   const { slicedData, pagination, prevPage, nextPage, changePage } =
     usePagination({ itemsPerPage, data, startFrom });
+
   return (
     <>
       <table className="table is-fullwidth is-striped">

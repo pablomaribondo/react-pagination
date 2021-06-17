@@ -1,4 +1,10 @@
-const Header = ({ title }) => {
+import { FC } from 'react';
+
+interface HeaderProps {
+  title: string;
+}
+
+const Header: FC<HeaderProps> = ({ title }) => {
   return (
     <div className="hero is-light has-text-centered">
       <div className="hero-body">

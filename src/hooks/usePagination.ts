@@ -1,13 +1,25 @@
-import { useState } from 'react';
+/* global Country: readonly, PaginationLink: readonly, CountriesData: readonly */
+import { MouseEvent as ReactMouseEvent, useState } from 'react';
 
-const usePagination = initialState => {
+interface PaginationHook {
+  slicedData: Country[];
+  pagination: PaginationLink[];
+  prevPage: (event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  nextPage: (event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  changePage: (
+    page: number,
+    event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => void;
+}
+
+const usePagination = (initialState: CountriesData): PaginationHook => {
   const { itemsPerPage, data, startFrom } = initialState;
   const perPage = itemsPerPage ? itemsPerPage : 10;
   const pages = Math.ceil(data.length / perPage);
-  const pagination = [];
+  const pagination: PaginationLink[] = [];
 
   const [currentPage, setCurrentPage] = useState(
-    startFrom <= pages ? startFrom : 1
+    startFrom && startFrom <= pages ? startFrom : 1
   );
   const [slicedData, setSlicedData] = useState(
     [...data].slice((currentPage - 1) * perPage, currentPage * perPage)
@@ -52,7 +64,10 @@ const usePagination = initialState => {
     }
   }
 
-  const changePage = (page, event) => {
+  const changePage = (
+    page: number,
+    event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
     event.preventDefault();
 
     if (page !== currentPage) {
@@ -61,7 +76,9 @@ const usePagination = initialState => {
     }
   };
 
-  const goToPrevPage = event => {
+  const goToPrevPage = (
+    event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
     event.preventDefault();
 
     setCurrentPage(prevValue =>
@@ -78,7 +95,9 @@ const usePagination = initialState => {
     }
   };
 
-  const goToNextPage = event => {
+  const goToNextPage = (
+    event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
     event.preventDefault();
 
     setCurrentPage(prevValue =>
