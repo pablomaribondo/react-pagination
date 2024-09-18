@@ -10,6 +10,7 @@ interface Country {
   native: string | null;
   emoji: string | null;
   emojiU: string | null;
+  [key: string]: string;
 }
 
 interface CountriesData {
