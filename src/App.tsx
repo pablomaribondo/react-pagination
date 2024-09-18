@@ -4,6 +4,7 @@ import { FC, useState } from 'react';
 import countries from './data/countries.json';
 import Header from './components/Header';
 import Countries from './components/Countries';
+import './App.css';
 
 const App: FC = () => {
   const [data] = useState(countries as Country[]);

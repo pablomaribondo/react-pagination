@@ -8,7 +8,25 @@ const Countries: FC<CountriesData> = ({ data, itemsPerPage, startFrom }) => {
     usePagination({ itemsPerPage, data, startFrom });
 
   return (
-    <>
+    <div className="wrapper">
+      <form className="mt-3 mb-3 is-flex" style={{ justifyContent: 'center' }}>
+        <div className="select mr-2">
+          <select>
+            <option value="">Select</option>
+          </select>
+        </div>
+        <div className="field mr-2">
+          <div className="control">
+            <input type="text" className="input" placeholder="Search..." />
+          </div>
+        </div>
+        <button type="submit" className="button is-link">
+          Search
+        </button>
+      </form>
+      <h2 className="mb-6 has-text-centered is-size-2">
+        Search results for: &quot;search value&quot;
+      </h2>
       <table className="table is-fullwidth is-striped">
         <thead>
           <tr>
@@ -68,7 +86,7 @@ const Countries: FC<CountriesData> = ({ data, itemsPerPage, startFrom }) => {
           })}
         </ul>
       </nav>
-    </>
+    </div>
   );
 };
 
