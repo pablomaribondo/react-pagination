@@ -16,6 +16,7 @@ interface CountriesData {
   itemsPerPage: number;
   startFrom?: number;
   data: Country[];
+  searchByData?: { [key: string]: string }[];
 }
 
 interface PaginationLink {

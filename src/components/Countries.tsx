@@ -3,18 +3,29 @@ import { FC } from 'react';
 
 import usePagination from '../hooks/usePagination';
 
-const Countries: FC<CountriesData> = ({ data, itemsPerPage, startFrom }) => {
+const Countries: FC<CountriesData> = ({
+  data,
+  itemsPerPage,
+  startFrom,
+  searchByData
+}) => {
   const { slicedData, pagination, prevPage, nextPage, changePage } =
     usePagination({ itemsPerPage, data, startFrom });
 
   return (
     <div className="wrapper">
       <form className="mt-3 mb-3 is-flex" style={{ justifyContent: 'center' }}>
-        <div className="select mr-2">
-          <select>
-            <option value="">Select</option>
-          </select>
-        </div>
+        {searchByData && searchByData.length && (
+          <div className="select mr-2">
+            <select>
+              {searchByData.map(data => (
+                <option key={data.value} value={data.value}>
+                  {data.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         <div className="field mr-2">
           <div className="control">
             <input type="text" className="input" placeholder="Search..." />

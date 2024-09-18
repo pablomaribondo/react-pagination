@@ -12,7 +12,17 @@ const App: FC = () => {
     <>
       <Header title="ReactJS pagination using custom hook" />
       <div className="container px2">
-        <Countries data={data} itemsPerPage={15} />
+        <Countries
+          data={data}
+          itemsPerPage={15}
+          searchByData={[
+            { label: 'Search by country', value: 'name' },
+            { label: 'Search by capital', value: 'capital' },
+            { label: 'Search by country code', value: 'iso2' },
+            { label: 'Search by currency', value: 'currency' },
+            { label: 'Search by phone code', value: 'phone_code' }
+          ]}
+        />
       </div>
     </>
   );
