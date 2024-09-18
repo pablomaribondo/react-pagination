@@ -2,7 +2,7 @@
 
 ## 💻 Projeto
 
-Projeto desenvolvido com base no vídeo [ReactJS pagination using custom hook][video], oferecido por [CodingFromScratch][channel].
+Projeto desenvolvido com base nos vídeos [ReactJS pagination using custom hook][video-1] e [ReactJS pagination using custom hook part 2 - search][video-2], oferecido por [CodingFromScratch][channel].
 
 ## 🛠 Tecnologias
 
@@ -22,4 +22,5 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 [channel]: https://www.youtube.com/channel/UCS2UjgEPEybOx1toY7aKRJg
 [react]: https://reactjs.org/
 [typescript]: https://www.typescriptlang.org/
-[video]: https://www.youtube.com/watch?v=AFlFTAI5k-Q
+[video-1]: https://www.youtube.com/watch?v=AFlFTAI5k-Q
+[video-2]: https://www.youtube.com/watch?v=xfwBzPbnM4k
