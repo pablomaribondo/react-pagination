@@ -1,4 +1,4 @@
-/* global CountriesData: readonly */
+/* global CountriesData: readonly, Country: readonly */
 import { FC, FormEvent, useState } from 'react';
 
 import usePagination from '../hooks/usePagination';
@@ -14,6 +14,15 @@ const Countries: FC<CountriesData> = ({
     searchByData && searchByData.length > 0 ? searchByData[0].value : ''
   );
   const [searchFor, setSearchFor] = useState('');
+  const [sortByKey, setSortByKey] = useState('name');
+  const [order, setOrder] = useState('asc');
+  const columns = [
+    { label: 'Country', sortKey: 'name' },
+    { label: 'Capital', sortKey: 'capital' },
+    { label: 'Code', sortKey: 'iso2' },
+    { label: 'Currency', sortKey: 'currency' },
+    { label: 'Phone Code', sortKey: 'phone_code' }
+  ];
   const {
     slicedData,
     pagination,
@@ -21,7 +30,8 @@ const Countries: FC<CountriesData> = ({
     nextPage,
     changePage,
     setFilteredData,
-    setSearching
+    setSearching,
+    filteredData
   } = usePagination({ itemsPerPage, data, startFrom });
 
   const submitHandler = (event: FormEvent) => {
@@ -40,8 +50,51 @@ const Countries: FC<CountriesData> = ({
         .toLowerCase()
         .includes(search.trim().toLowerCase());
     });
-    setFilteredData(filtered);
+    const copyOfFilteredData = [...filtered];
+    const sortFiltered = sortData(copyOfFilteredData, sortByKey, order);
+    setFilteredData(sortFiltered);
     setSearchFor(search);
+  };
+
+  const sortData = (dataToSort: Country[], sortBy: string, orderBy: string) => {
+    const filtered = dataToSort.sort((a, b) => {
+      if (orderBy === 'asc') {
+        if (a[sortBy] < b[sortBy]) {
+          return -1;
+        }
+
+        if (a[sortBy] > b[sortBy]) {
+          return 1;
+        }
+
+        return 0;
+      }
+
+      if (b[sortBy] < a[sortBy]) {
+        return -1;
+      }
+
+      if (b[sortBy] > a[sortBy]) {
+        return 1;
+      }
+
+      return 0;
+    });
+    return filtered;
+  };
+
+  const sortHandler = (sortBy: string, orderBy: string) => {
+    if (sortByKey !== sortBy) {
+      setSortByKey(sortBy);
+    }
+
+    if (order !== orderBy) {
+      setOrder(orderBy);
+    }
+
+    const copyOfFilteredData = [...filteredData];
+    const filtered = sortData(copyOfFilteredData, sortBy, orderBy);
+    setFilteredData(filtered);
   };
 
   const renderPagination = (
@@ -86,11 +139,32 @@ const Countries: FC<CountriesData> = ({
     <table className="table is-fullwidth is-striped">
       <thead>
         <tr>
-          <th>Country</th>
-          <th>Capital</th>
-          <th>Code</th>
-          <th>Currency</th>
-          <th>Phone Code</th>
+          {columns.map(column => (
+            <th
+              key={column.sortKey}
+              onClick={() =>
+                sortHandler(
+                  column.sortKey,
+                  sortByKey === column.sortKey
+                    ? order === 'asc'
+                      ? 'desc'
+                      : 'asc'
+                    : 'asc'
+                )
+              }
+            >
+              {column.label}
+              {sortByKey === column.sortKey && (
+                <span className="icon">
+                  {order === 'desc' ? (
+                    <i className="fas fa-sort-up" />
+                  ) : (
+                    <i className="fas fa-sort-down" />
+                  )}
+                </span>
+              )}
+            </th>
+          ))}
         </tr>
       </thead>
 

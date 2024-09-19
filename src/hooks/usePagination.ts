@@ -4,6 +4,7 @@ import { MouseEvent as ReactMouseEvent, useEffect, useState } from 'react';
 interface PaginationHook {
   slicedData: Country[];
   pagination: PaginationLink[];
+  filteredData: Country[];
   prevPage: (event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   nextPage: (event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   changePage: (
@@ -132,6 +133,7 @@ const usePagination = (initialState: CountriesData): PaginationHook => {
   return {
     slicedData,
     pagination,
+    filteredData,
     prevPage: goToPrevPage,
     nextPage: goToNextPage,
     changePage,
